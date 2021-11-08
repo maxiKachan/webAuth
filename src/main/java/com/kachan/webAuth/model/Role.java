@@ -1,5 +1,12 @@
 package com.kachan.webAuth.model;
 
-public enum Role {
-    ROLE_USER
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Role implements GrantedAuthority {
+    ROLE_USER;
+
+    @Override
+    public String getAuthority() {
+        return ROLE_USER.toString();
+    }
 }

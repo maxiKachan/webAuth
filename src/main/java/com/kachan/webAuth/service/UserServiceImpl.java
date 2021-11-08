@@ -5,11 +5,11 @@ import com.kachan.webAuth.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserRepositoryImpl implements UserService{
+public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
 
-    public UserRepositoryImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
