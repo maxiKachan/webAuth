@@ -107,4 +107,25 @@ public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this){
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()){
+            return false;
+        }
+        User user = (User) obj;
+
+        return user.getEmail() != null && user.getEmail().equals(email) ||
+                user.getFirstName() != null && user.getFirstName().equals(firstName);
+    }
+
+    @Override
+    public int hashCode() {
+        int prime = 31;
+        return prime  + (firstName == null ? 0 : firstName.hashCode()) +
+                (email == null ? 0 : email.hashCode());
+    }
 }

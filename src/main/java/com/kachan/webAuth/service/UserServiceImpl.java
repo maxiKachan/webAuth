@@ -22,4 +22,9 @@ public class UserServiceImpl implements UserService{
     public User findUserByFirstName(String firstName) {
         return userRepository.findUserByFirstName(firstName).orElse(null);
     }
+
+    @Override
+    public void addUser(User user) {
+        userRepository.addUser(user);
+    }
 }
