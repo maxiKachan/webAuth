@@ -10,7 +10,7 @@
     <% response.sendRedirect("/hello"); %>
 </sec:authorize>
 <div class="container">
-    <form class="singin" method="POST" action="spring_security_check">
+    <form class="singin" method="POST" action="login">
         <h2 class="form-singin-heading">Login</h2>
         <p>
             <label for="username">Username/email</label>

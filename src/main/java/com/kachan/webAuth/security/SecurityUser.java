@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 public class SecurityUser implements UserDetails {
 
@@ -23,9 +24,7 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        HashSet<Role> roles = new HashSet<>();
-        roles.add(role);
-        return roles;
+        return getSetAuthorities(role);
     }
 
     @Override
@@ -59,7 +58,9 @@ public class SecurityUser implements UserDetails {
     }
 
     public static UserDetails buildUserDetails(User user){
-        return new SecurityUser(user.getFirstName(), user.getPassword(), user.getRole());
+
+        return new org.springframework.security.core.userdetails.User(user.getFirstName(), user.getPassword(),
+                SecurityUser.getSetAuthorities(user.getRole()));
     }
 
     @Override
@@ -69,5 +70,11 @@ public class SecurityUser implements UserDetails {
                 ", password='" + password + '\'' +
                 ", role=" + role +
                 '}';
+    }
+
+    private static Set<Role> getSetAuthorities(Role role){
+        HashSet<Role> roles = new HashSet<>();
+        roles.add(role);
+        return roles;
     }
 }
