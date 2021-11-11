@@ -36,6 +36,7 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/hello").permitAll()
                 .antMatchers("/registration").permitAll()
+                .antMatchers("/auth/login").permitAll()
                 .antMatchers("/**").hasRole(Role.USER.name())
                 .anyRequest()
                 .authenticated()

@@ -34,7 +34,7 @@ public class JwtTokenProvider {
 
     @PostConstruct
     protected void init(){
-        secretKet = Base64.getEncoder().encodeToString(secretKet.getBytes());
+        secretKet = Base64.getEncoder().encodeToString(secretKet.getBytes(StandardCharsets.UTF_8));
     }
 
     public String createToken(String username, String role){
@@ -47,7 +47,7 @@ public class JwtTokenProvider {
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(validity)
-                .signWith(SignatureAlgorithm.ES256, secretKet)
+                .signWith(SignatureAlgorithm.HS256, secretKet)
                 .compact();
     }
 

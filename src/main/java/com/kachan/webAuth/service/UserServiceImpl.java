@@ -1,7 +1,9 @@
 package com.kachan.webAuth.service;
 
+import com.kachan.webAuth.model.Role;
 import com.kachan.webAuth.model.User;
 import com.kachan.webAuth.repository.UserRepository;
+import com.kachan.webAuth.util.CheckUserUtil;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,7 +26,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void addUser(User user) {
-        userRepository.addUser(user);
+    public User addUser(User user) {
+        if (user.getRole() == null){
+            user.setRole(Role.USER);
+        }
+        if (CheckUserUtil.checkUser(user)){
+            return userRepository.addUser(user);
+        }
+        return null;
     }
 }

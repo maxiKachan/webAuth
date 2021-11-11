@@ -10,5 +10,5 @@ public interface UserRepository {
 
     Optional<User> findUserByFirstName(String firstName);
 
-    void addUser(User user);
+    User addUser(User user);
 }

@@ -25,11 +25,15 @@ public class JpaUserRepository implements UserRepository{
     }
 
     @Override
-    public void addUser(User user) {
+    public User addUser(User user) {
+        User addUser;
         User userByEmail = proxy.findUserByEmail(user.getEmail()).orElse(null);
-        User userByFirstName = proxy.findUserByFirstName(user.getFirstName()).orElse(null);
-        if (userByEmail == null && userByFirstName == null) {
-            proxy.save(user);
+        if (userByEmail == null) {
+             addUser = proxy.save(user);
+             return addUser;
+        } else {
+            return null;
         }
+
     }
 }
