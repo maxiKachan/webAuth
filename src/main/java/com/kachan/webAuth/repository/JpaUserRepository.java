@@ -20,11 +20,6 @@ public class JpaUserRepository implements UserRepository{
     }
 
     @Override
-    public Optional<User> findUserByFirstName(String firstName) {
-        return proxy.findUserByFirstName(firstName);
-    }
-
-    @Override
     public User addUser(User user) {
         User addUser;
         User userByEmail = proxy.findUserByEmail(user.getEmail()).orElse(null);

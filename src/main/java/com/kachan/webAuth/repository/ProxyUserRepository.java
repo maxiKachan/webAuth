@@ -9,8 +9,6 @@ import java.util.Optional;
 public interface ProxyUserRepository extends JpaRepository<User, Integer> {
     Optional<User> findUserByEmail(String email);
 
-    Optional<User> findUserByFirstName(String firstName);
-
     @Override
     @Transactional
     <S extends User> S save(S entity);

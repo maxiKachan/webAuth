@@ -24,7 +24,9 @@ public class RegistrationRestController {
 
     @PostMapping()
     public ResponseEntity<?> createUser(@RequestBody User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if (!(user.getPassword() == null || !user.getPassword().equals(""))) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
 
         if (userService.addUser(user) == null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

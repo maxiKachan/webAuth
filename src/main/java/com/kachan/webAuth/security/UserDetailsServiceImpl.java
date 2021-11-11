@@ -1,6 +1,5 @@
 package com.kachan.webAuth.security;
 
-import com.kachan.webAuth.model.User;
 import com.kachan.webAuth.service.UserService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,14 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user;
 
-        if (s.contains("@")){
-            user = userService.findUserByEmail(s);
-        } else {
-            user = userService.findUserByFirstName(s);
-        }
-        System.out.println(user);
-        return SecurityUser.buildUserDetails(user);
+        return SecurityUser.buildUserDetails(userService.findUserByEmail(s));
     }
 }

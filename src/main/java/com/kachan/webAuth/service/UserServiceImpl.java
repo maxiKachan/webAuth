@@ -21,11 +21,6 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User findUserByFirstName(String firstName) {
-        return userRepository.findUserByFirstName(firstName).orElse(null);
-    }
-
-    @Override
     public User addUser(User user) {
         if (user.getRole() == null){
             user.setRole(Role.USER);

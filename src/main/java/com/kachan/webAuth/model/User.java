@@ -118,8 +118,7 @@ public class User {
         }
         User user = (User) obj;
 
-        return user.getEmail() != null && user.getEmail().equals(email) ||
-                user.getFirstName() != null && user.getFirstName().equals(firstName);
+        return user.getEmail() != null && user.getEmail().equals(email);
     }
 
     @Override
